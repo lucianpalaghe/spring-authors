@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+<h2>Authors in database</h2>
+<table>
+    <tr>
+        <th>Nume</th>
+        <th>Email</th>
+        <th>Data nasterii</th>
+    </tr>
+    <tr th:each="author: ${authors}">
+        <td th:text="${author.name}"></td>
+        <td th:text="${author.email}"></td>
+        <td th:text="${author.birthDate}"></td>
+    </tr>
+</table>
+</body>
+</html>
