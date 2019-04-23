@@ -7,11 +7,18 @@ import ro.siit.authorsapp.model.AuthorRepository;
 
 @Service
 public class AuthorService {
-
     @Autowired
-    AuthorRepository authorRepository;
+    AuthorRepository authorRepo;
 
-    public Iterable<Author> getAllAuthors() {
-        return authorRepository.findAll();
+    public Iterable<Author> getAllAuthors(){
+        return authorRepo.findAll();
+    }
+
+    public Author saveAuthor(Author a){
+        return authorRepo.save(a);
+    }
+
+    public void removeAuthorById(Integer id){
+        authorRepo.deleteById(id);
     }
 }

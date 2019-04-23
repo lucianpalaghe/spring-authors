@@ -1,22 +1,33 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
 <head>
-    <meta charset="UTF-8">
-    <title>Authors</title>
-</head>
+    <title th:text="#{authors.title}"></title>
+   </head>
 <body>
-<h2>Authors in database</h2>
-<table>
-    <tr>
-        <th>Nume</th>
-        <th>Email</th>
-        <th>Data nasterii</th>
-    </tr>
-    <tr th:each="author: ${authors}">
-        <td th:text="${author.name}"></td>
-        <td th:text="${author.email}"></td>
-        <td th:text="${author.birthDate}"></td>
-    </tr>
-</table>
+
+
+<div layout:fragment="continut">
+    <div class="container">
+    <h2>Authors in databse</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Nume</th>
+            <th>Email</th>
+            <th>Birth date</th>
+            <th></th>
+        </tr>
+        <tr th:each="author: ${authors}">
+            <td th:text="${author.name}">fd</td>
+            <td th:text="${author.email}"></td>
+            <td th:text="${#temporals.format(author.birthDate, 'dd/MM/yyyy')}"></td>
+            <td><form th:action="@{/authors/delete}" method="post">
+                <input type="hidden" name="id" th:value="${author.id}" />
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </form></td>
+        </tr>
+    </table>
+    <a th:href="@{/authors/add}">Add author</a>
+    </div>
+</div>
 </body>
 </html>
